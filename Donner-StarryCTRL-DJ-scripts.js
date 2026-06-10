@@ -49,6 +49,8 @@ StarryCTRL.LED = {
     fxAssign: {"[Channel1]": 0x03, "[Channel2]": 0x04},
     fxOn: 0x5F,
     shift: 0x5E,
+    mic: 0x5D,
+    live: 0x63,
 };
 
 StarryCTRL.allLeds = [
@@ -111,6 +113,13 @@ StarryCTRL.init = function() {
             })
         );
     });
+    StarryCTRL.connections.push(
+        engine.makeConnection("[Microphone]", "talkover", function(value) {
+            StarryCTRL.sendLed(StarryCTRL.LED.mic, value > 0);
+        }),
+        engine.makeConnection("[Recording]", "status", StarryCTRL.updateLiveLed),
+        engine.makeConnection("[Shoutcast]", "status", StarryCTRL.updateLiveLed)
+    );
     StarryCTRL.connections.forEach(function(conn) { conn.trigger(); });
 
     StarryCTRL.connectFx();
@@ -380,6 +389,40 @@ StarryCTRL.loadButton = function(channel, control, value, status, group) {
     if (StarryCTRL.isPress(value)) {
         engine.setValue(group, "LoadSelectedTrack", 1);
     }
+};
+
+// Pause transport button: toggle mic 1 (talkover)
+StarryCTRL.micButton = function(channel, control, value, status, group) {
+    if (StarryCTRL.isPress(value)) {
+        engine.setValue(group, "talkover", !engine.getValue(group, "talkover"));
+    }
+};
+
+// Right arrow: go live — start/stop recording and broadcasting together.
+// If the two states ever diverge (e.g. broadcast dropped but recording kept
+// going), one press brings both back down.
+StarryCTRL.liveButton = function(channel, control, value, status, group) {
+    if (!StarryCTRL.isPress(value)) {
+        return;
+    }
+    const recording = engine.getValue("[Recording]", "status") > 0;
+    const broadcasting = engine.getValue("[Shoutcast]", "enabled") > 0;
+    const goLive = !(recording || broadcasting);
+    if (recording !== goLive) {
+        engine.setValue("[Recording]", "toggle_recording", 1);
+        engine.setValue("[Recording]", "toggle_recording", 0);
+    }
+    engine.setValue("[Shoutcast]", "enabled", goLive ? 1 : 0);
+};
+
+// Live LED: lit while recording or while the broadcast connection is up.
+// [Shoutcast],status: 0 unconnected, 1 connecting, 2 on air, 3 failure,
+// 4 partial (some connections up) — treat 1/2/4 as live.
+StarryCTRL.updateLiveLed = function() {
+    const recording = engine.getValue("[Recording]", "status") > 0;
+    const bcStatus = engine.getValue("[Shoutcast]", "status");
+    const broadcasting = bcStatus === 1 || bcStatus === 2 || bcStatus === 4;
+    StarryCTRL.sendLed(StarryCTRL.LED.live, recording || broadcasting);
 };
 
 // Up arrow: move library focus back / shift: open-activate selected item

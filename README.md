@@ -64,14 +64,22 @@ the bottom-left ▶ transport button.
 | Button | Function | Shift |
 |--------|----------|-------|
 | ▶ | **SHIFT** (hold) | |
-| ⏸ | free | |
+| ⏸ | Mic 1 on/off (talkover) — LED lit while the mic is live | |
 | ⏺ | FX on (toggle effect 1 of focused unit) | |
 | ⏮ | Previous effect | Previous effect unit |
 | ⏭ | Next effect | Next effect unit |
 | « | Load selected track → deck 1 | |
 | » | Load selected track → deck 2 | |
 | ▲ | Library focus back | Select item (GoToItem) |
-| ▼ ◀ ▶ | free | |
+| ▼ ◀ | free | |
+| ▶ (rightmost) | **Go live**: start/stop recording + broadcasting together — LED lit while live | |
+
+Notes on go live: broadcasting must be configured in Preferences →
+Live Broadcasting first, or Mixxx will show an error when enabling it.
+The LED lights while recording is running or the broadcast connection
+is up (including the connecting phase); if both drop, it goes dark.
+Mixxx persists the broadcasting toggle across restarts, so if you quit
+while live it may ask to reconnect on the next launch.
 
 ## Things to verify on first run (built without the hardware)
 

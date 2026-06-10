@@ -347,8 +347,24 @@
                 <midino>0x60</midino>
                 <options><script-binding/></options>
             </control>
-            <!-- Free buttons: pause transport (0x5D), down arrow (0x61),
-                 left arrow (0x62), right arrow (0x63), strip 2/3 R+square
+            <control>
+                <group>[Microphone]</group>
+                <key>StarryCTRL.micButton</key>
+                <description>Pause transport button: toggle mic 1 (talkover). LED lit while live.</description>
+                <status>0x90</status>
+                <midino>0x5D</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>StarryCTRL.liveButton</key>
+                <description>Right arrow: go live — start/stop recording + broadcasting together. LED lit while live.</description>
+                <status>0x90</status>
+                <midino>0x63</midino>
+                <options><script-binding/></options>
+            </control>
+            <!-- Free buttons: down arrow (0x61),
+                 left arrow (0x62), strip 2/3 R+square
                  (0x01, 0x02, 0x19, 0x1A), strip 4 M/S (0x13, 0x0B),
                  strip 6/7 R+square (0x05, 0x06, 0x1D, 0x1E), strip 7 S (0x0E),
                  strip 8 M (0x17). Free faders: 4-6 (0xE3-0xE5). -->

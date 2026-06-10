@@ -7,7 +7,7 @@ M-Vave SMC-Mixer), implementing the layout drawn by Fiachik in the
 ## Install
 
 Copy `Donner-StarryCTRL-DJ.midi.xml` and `Donner-StarryCTRL-DJ-scripts.js`
-into `~/.mixxx/controllers/` (already done on this machine), then pick
+into `~/.mixxx/controllers/`, then pick
 **Donner StarryCTRL (DJ)** for the device in Preferences → Controllers.
 
 **Important:** keep the controller on its default layer. The hardware

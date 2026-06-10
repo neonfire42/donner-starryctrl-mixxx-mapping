@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MixxxControllerPreset mixxxVersion="2.5" schemaVersion="1">
+    <info>
+        <name>Donner StarryCTRL (DJ)</name>
+        <author>neonfire, based on the layout by Fiachik and MIDI research by Sam Whited</author>
+        <description>2-deck DJ mapping for the Donner StarryCTRL / M-Vave SMC-Mixer. The bottom-left play transport button is SHIFT. Keep the hardware on its default layer.</description>
+        <forums>https://mixxx.discourse.group/t/m-wave-sinco-smc-mixer-radio-broadcast-mapping/30366</forums>
+    </info>
+    <controller id="Donner-StarryCTRL">
+        <scriptfiles>
+            <file filename="Donner-StarryCTRL-DJ-scripts.js" functionprefix="StarryCTRL"/>
+        </scriptfiles>
+        <controls>
+            <!-- ============ Faders (pitch bend) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.volumeFader</key>
+                <description>Fader 1: deck 1 volume.</description>
+                <status>0xE0</status>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.volumeFader</key>
+                <description>Fader 2: deck 2 volume.</description>
+                <status>0xE1</status>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>StarryCTRL.crossfaderFader</key>
+                <description>Fader 3: crossfader.</description>
+                <status>0xE2</status>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.rateFader</key>
+                <description>Fader 7: deck 1 pitch.</description>
+                <status>0xE6</status>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.rateFader</key>
+                <description>Fader 8: deck 2 pitch.</description>
+                <status>0xE7</status>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Encoders (CC, relative) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.jogKnob</key>
+                <description>Knob 1: deck 1 jog turn / shift: jog search.</description>
+                <status>0xB0</status>
+                <midino>0x10</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>StarryCTRL.headGainKnob</key>
+                <description>Knob 2: headphone level.</description>
+                <status>0xB0</status>
+                <midino>0x11</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>StarryCTRL.headMixKnob</key>
+                <description>Knob 3: cue-master mix.</description>
+                <status>0xB0</status>
+                <midino>0x12</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel1]]</group>
+                <key>StarryCTRL.filterKnob</key>
+                <description>Knob 4: deck 1 superknob/filter.</description>
+                <status>0xB0</status>
+                <midino>0x13</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>StarryCTRL.browseKnob</key>
+                <description>Knob 5: library scroll / shift: waveform zoom.</description>
+                <status>0xB0</status>
+                <midino>0x14</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel2]]</group>
+                <key>StarryCTRL.filterKnob</key>
+                <description>Knob 6: deck 2 superknob/filter.</description>
+                <status>0xB0</status>
+                <midino>0x15</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>StarryCTRL.fxLevelKnob</key>
+                <description>Knob 7: FX level depth / shift: metaknob.</description>
+                <status>0xB0</status>
+                <midino>0x16</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.jogKnob</key>
+                <description>Knob 8: deck 2 jog turn / shift: jog search.</description>
+                <status>0xB0</status>
+                <midino>0x17</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 1 (deck 1) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.loopInButton</key>
+                <description>Strip 1 M: loop in (hold + jog knob to adjust).</description>
+                <status>0x90</status>
+                <midino>0x10</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.syncButton</key>
+                <description>Strip 1 S: sync / shift: tempo range.</description>
+                <status>0x90</status>
+                <midino>0x08</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.cueButton</key>
+                <description>Strip 1 R: cue / shift: cue at start.</description>
+                <status>0x90</status>
+                <midino>0x00</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.playButton</key>
+                <description>Strip 1 square: play / shift: reverse.</description>
+                <status>0x90</status>
+                <midino>0x18</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 2 (deck 1) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.loopOutButton</key>
+                <description>Strip 2 M: loop out (hold + jog knob to adjust).</description>
+                <status>0x90</status>
+                <midino>0x11</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.loopHalveButton</key>
+                <description>Strip 2 S: loop halve.</description>
+                <status>0x90</status>
+                <midino>0x09</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 3 (deck 1) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.reloopButton</key>
+                <description>Strip 3 M: reloop/exit.</description>
+                <status>0x90</status>
+                <midino>0x12</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.loopDoubleButton</key>
+                <description>Strip 3 S: loop double.</description>
+                <status>0x90</status>
+                <midino>0x0A</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 4 (deck 1 FX) ============ -->
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.fxAssignButton</key>
+                <description>Strip 4 R: FX1 — assign focused effect unit to deck 1.</description>
+                <status>0x90</status>
+                <midino>0x03</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.pflButton</key>
+                <description>Strip 4 square: CUE1 — deck 1 headphone cue.</description>
+                <status>0x90</status>
+                <midino>0x1B</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 5 (deck 2 + FX) ============ -->
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.loopInButton</key>
+                <description>Strip 5 M: loop in (hold + jog knob to adjust).</description>
+                <status>0x90</status>
+                <midino>0x14</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.loopHalveButton</key>
+                <description>Strip 5 S: loop halve.</description>
+                <status>0x90</status>
+                <midino>0x0C</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.fxAssignButton</key>
+                <description>Strip 5 R: FX2 — assign focused effect unit to deck 2.</description>
+                <status>0x90</status>
+                <midino>0x04</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.pflButton</key>
+                <description>Strip 5 square: CUE2 — deck 2 headphone cue.</description>
+                <status>0x90</status>
+                <midino>0x1C</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 6 (deck 2) ============ -->
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.loopOutButton</key>
+                <description>Strip 6 M: loop out (hold + jog knob to adjust).</description>
+                <status>0x90</status>
+                <midino>0x15</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.loopDoubleButton</key>
+                <description>Strip 6 S: loop double.</description>
+                <status>0x90</status>
+                <midino>0x0D</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 7 (deck 2) ============ -->
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.reloopButton</key>
+                <description>Strip 7 M: reloop/exit.</description>
+                <status>0x90</status>
+                <midino>0x16</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Strip 8 (deck 2) ============ -->
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.syncButton</key>
+                <description>Strip 8 S: sync / shift: tempo range.</description>
+                <status>0x90</status>
+                <midino>0x0F</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.cueButton</key>
+                <description>Strip 8 R: cue / shift: cue at start.</description>
+                <status>0x90</status>
+                <midino>0x07</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.playButton</key>
+                <description>Strip 8 square: play / shift: reverse.</description>
+                <status>0x90</status>
+                <midino>0x1F</midino>
+                <options><script-binding/></options>
+            </control>
+
+            <!-- ============ Bottom row ============ -->
+            <control>
+                <group>[Master]</group>
+                <key>StarryCTRL.shiftButton</key>
+                <description>Play transport button: SHIFT.</description>
+                <status>0x90</status>
+                <midino>0x5E</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>StarryCTRL.fxOnButton</key>
+                <description>Record transport button: FX on (focused unit, effect 1).</description>
+                <status>0x90</status>
+                <midino>0x5F</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>StarryCTRL.prevEffectButton</key>
+                <description>Rewind transport button: previous effect / shift: previous effect unit.</description>
+                <status>0x90</status>
+                <midino>0x5B</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>StarryCTRL.nextEffectButton</key>
+                <description>Fast-forward transport button: next effect / shift: next effect unit.</description>
+                <status>0x90</status>
+                <midino>0x5C</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>StarryCTRL.loadButton</key>
+                <description>Left chevron: load selected track into deck 1.</description>
+                <status>0x90</status>
+                <midino>0x2E</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>StarryCTRL.loadButton</key>
+                <description>Right chevron: load selected track into deck 2.</description>
+                <status>0x90</status>
+                <midino>0x2F</midino>
+                <options><script-binding/></options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>StarryCTRL.backButton</key>
+                <description>Up arrow: library focus back / shift: select item.</description>
+                <status>0x90</status>
+                <midino>0x60</midino>
+                <options><script-binding/></options>
+            </control>
+            <!-- Free buttons: pause transport (0x5D), down arrow (0x61),
+                 left arrow (0x62), right arrow (0x63), strip 2/3 R+square
+                 (0x01, 0x02, 0x19, 0x1A), strip 4 M/S (0x13, 0x0B),
+                 strip 6/7 R+square (0x05, 0x06, 0x1D, 0x1E), strip 7 S (0x0E),
+                 strip 8 M (0x17). Free faders: 4-6 (0xE3-0xE5). -->
+        </controls>
+        <outputs/>
+    </controller>
+</MixxxControllerPreset>

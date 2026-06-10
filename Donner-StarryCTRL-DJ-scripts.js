@@ -29,6 +29,8 @@ StarryCTRL.zoomStep = 0.3;        // waveform zoom per tick
 StarryCTRL.knobStep = 0.025;      // parameter change per tick for level knobs
 StarryCTRL.numFxUnits = 2;        // how many effect units shift+prev/next cycles
 StarryCTRL.tempoRanges = [0.08, 0.16, 0.24, 0.5];
+StarryCTRL.endWarningSecs = 30;   // seconds before track end to start flashing
+StarryCTRL.endWarningFlashMs = 500; // flash interval in milliseconds
 
 // ---------------------------------------------------------------------------
 // State
@@ -39,6 +41,11 @@ StarryCTRL.loopInHeld = {"[Channel1]": false, "[Channel2]": false};
 StarryCTRL.loopOutHeld = {"[Channel1]": false, "[Channel2]": false};
 StarryCTRL.connections = [];
 StarryCTRL.fxConnections = [];
+// End-of-track warning: flash the four unused middle LEDs of the R row
+// (0x01, 0x02 = Deck 1 side; 0x05, 0x06 = Deck 2 side)
+StarryCTRL.endWarningLeds = {"[Channel1]": [0x01, 0x02], "[Channel2]": [0x05, 0x06]};
+StarryCTRL.endWarningTimer = {"[Channel1]": 0, "[Channel2]": 0};
+StarryCTRL.endWarningFlashState = {"[Channel1]": false, "[Channel2]": false};
 
 StarryCTRL.LED = {
     cue: {"[Channel1]": 0x00, "[Channel2]": 0x07},
@@ -54,7 +61,8 @@ StarryCTRL.LED = {
 };
 
 StarryCTRL.allLeds = [
-    0x00, 0x07, 0x18, 0x1F, 0x08, 0x0F, 0x10, 0x14, 0x11, 0x15,
+    0x00, 0x01, 0x02, 0x05, 0x06, 0x07,
+    0x18, 0x1F, 0x08, 0x0F, 0x10, 0x14, 0x11, 0x15,
     0x12, 0x16, 0x09, 0x0C, 0x0A, 0x0D, 0x03, 0x04, 0x1B, 0x1C,
     0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x2E, 0x2F, 0x60, 0x61, 0x62, 0x63,
 ];
@@ -78,6 +86,53 @@ StarryCTRL.unitGroup = function() {
 
 StarryCTRL.effectGroup = function() {
     return "[EffectRack1_EffectUnit" + StarryCTRL.focusedUnit + "_Effect1]";
+};
+
+// ---------------------------------------------------------------------------
+// End-of-track warning
+// ---------------------------------------------------------------------------
+StarryCTRL.startEndWarning = function(group) {
+    if (StarryCTRL.endWarningTimer[group]) {
+        return;
+    }
+    StarryCTRL.endWarningFlashState[group] = true;
+    StarryCTRL.endWarningLeds[group].forEach(function(note) {
+        StarryCTRL.sendLed(note, true);
+    });
+    StarryCTRL.endWarningTimer[group] = engine.beginTimer(
+        StarryCTRL.endWarningFlashMs,
+        function() {
+            StarryCTRL.endWarningFlashState[group] =
+                !StarryCTRL.endWarningFlashState[group];
+            StarryCTRL.endWarningLeds[group].forEach(function(note) {
+                StarryCTRL.sendLed(note, StarryCTRL.endWarningFlashState[group]);
+            });
+        }
+    );
+};
+
+StarryCTRL.stopEndWarning = function(group) {
+    if (StarryCTRL.endWarningTimer[group]) {
+        engine.stopTimer(StarryCTRL.endWarningTimer[group]);
+        StarryCTRL.endWarningTimer[group] = 0;
+    }
+    StarryCTRL.endWarningFlashState[group] = false;
+    StarryCTRL.endWarningLeds[group].forEach(function(note) {
+        StarryCTRL.sendLed(note, false);
+    });
+};
+
+StarryCTRL.checkEndWarning = function(group, pos) {
+    const duration = engine.getValue(group, "duration");
+    const playing = engine.getValue(group, "play") > 0;
+    if (duration > 0 && pos > 0 && playing) {
+        const remaining = duration * (1 - pos);
+        if (remaining <= StarryCTRL.endWarningSecs) {
+            StarryCTRL.startEndWarning(group);
+            return;
+        }
+    }
+    StarryCTRL.stopEndWarning(group);
 };
 
 // ---------------------------------------------------------------------------
@@ -110,6 +165,9 @@ StarryCTRL.init = function() {
             }),
             engine.makeConnection(group, "pfl", function(value) {
                 StarryCTRL.sendLed(StarryCTRL.LED.pfl[group], value > 0);
+            }),
+            engine.makeConnection(group, "playposition", function(pos) {
+                StarryCTRL.checkEndWarning(group, pos);
             })
         );
     });
@@ -126,6 +184,9 @@ StarryCTRL.init = function() {
 };
 
 StarryCTRL.shutdown = function() {
+    ["[Channel1]", "[Channel2]"].forEach(function(group) {
+        StarryCTRL.stopEndWarning(group);
+    });
     StarryCTRL.connections.forEach(function(conn) { conn.disconnect(); });
     StarryCTRL.fxConnections.forEach(function(conn) { conn.disconnect(); });
     StarryCTRL.allLeds.forEach(function(note) {

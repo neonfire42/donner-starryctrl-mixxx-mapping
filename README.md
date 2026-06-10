@@ -46,8 +46,9 @@ the bottom-left ▶ transport button.
 |-------|----------|
 | 1 | Deck 1 volume |
 | 2 | Deck 2 volume |
-| 3 | Crossfader |
-| 4–6 | free |
+| 3–4 | free |
+| 5 | Crossfader |
+| 6 | free |
 | 7 | Deck 1 pitch (up = faster; flip sign in `rateFader` for DJ-style) |
 | 8 | Deck 2 pitch |
 

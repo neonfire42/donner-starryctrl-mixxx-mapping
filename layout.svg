@@ -79,9 +79,9 @@
 <rect x="394" y="416" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="405" y="431" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
 <text x="424" y="431" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
-<rect x="456.0" y="475" width="8" height="140" rx="4" fill="#101214" stroke="#5a6472"/>
-<rect x="438.0" y="532" width="44" height="16" rx="4" fill="#454b53" stroke="#5a6472"/>
-<text x="460.0" y="645" font-size="11" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >CROSSFADER</text>
+<rect x="456.0" y="475" width="8" height="140" rx="4" fill="#101214" stroke="#3a3e44"/>
+<rect x="438.0" y="532" width="44" height="16" rx="4" fill="#2c3036" stroke="#3a3e44"/>
+<text x="460.0" y="645" font-size="11" fill="#5b5e63" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
 <rect x="555" y="90" width="160" height="600" rx="10" fill="#23262b"/>
 <text x="635.0" y="110" font-size="11" fill="#76797e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >STRIP 4</text>
 <circle cx="635.0" cy="152" r="26" fill="#2e333a" stroke="#3182ce" stroke-width="2"/>
@@ -134,9 +134,9 @@
 <text x="755" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
 <text x="774" y="425" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >CUE2</text>
 <text x="774" y="439" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >headphone cue</text>
-<rect x="806.0" y="475" width="8" height="140" rx="4" fill="#101214" stroke="#3a3e44"/>
-<rect x="788.0" y="532" width="44" height="16" rx="4" fill="#2c3036" stroke="#3a3e44"/>
-<text x="810.0" y="645" font-size="11" fill="#5b5e63" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<rect x="806.0" y="475" width="8" height="140" rx="4" fill="#101214" stroke="#5a6472"/>
+<rect x="788.0" y="532" width="44" height="16" rx="4" fill="#454b53" stroke="#5a6472"/>
+<text x="810.0" y="645" font-size="11" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >CROSSFADER</text>
 <rect x="905" y="90" width="160" height="600" rx="10" fill="#23262b"/>
 <text x="985.0" y="110" font-size="11" fill="#76797e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >STRIP 6</text>
 <circle cx="985.0" cy="152" r="26" fill="#2e333a" stroke="#38a169" stroke-width="2"/>

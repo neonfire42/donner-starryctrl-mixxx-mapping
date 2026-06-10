@@ -29,8 +29,8 @@
             <control>
                 <group>[Master]</group>
                 <key>StarryCTRL.crossfaderFader</key>
-                <description>Fader 3: crossfader.</description>
-                <status>0xE2</status>
+                <description>Fader 5: crossfader.</description>
+                <status>0xE4</status>
                 <options><script-binding/></options>
             </control>
             <control>
@@ -367,7 +367,7 @@
                  left arrow (0x62), strip 2/3 R+square
                  (0x01, 0x02, 0x19, 0x1A), strip 4 M/S (0x13, 0x0B),
                  strip 6/7 R+square (0x05, 0x06, 0x1D, 0x1E), strip 7 S (0x0E),
-                 strip 8 M (0x17). Free faders: 4-6 (0xE3-0xE5). -->
+                 strip 8 M (0x17). Free faders: 3, 4, 6 (0xE2, 0xE3, 0xE5). -->
         </controls>
         <outputs/>
     </controller>

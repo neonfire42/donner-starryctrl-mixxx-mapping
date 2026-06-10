@@ -100,9 +100,9 @@ B = {
 faders = [
     (D1, "DECK 1 VOLUME", ""),
     (D2, "DECK 2 VOLUME", ""),
+    (None, "free", ""),
+    (None, "free", ""),
     (GRAY, "CROSSFADER", ""),
-    (None, "free", ""),
-    (None, "free", ""),
     (None, "free", ""),
     (D1, "DECK 1 PITCH", "up = faster"),
     (D2, "DECK 2 PITCH", "up = faster"),

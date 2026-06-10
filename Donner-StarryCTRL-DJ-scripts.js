@@ -112,10 +112,11 @@ StarryCTRL.startEndWarning = function(group) {
 };
 
 StarryCTRL.stopEndWarning = function(group) {
-    if (StarryCTRL.endWarningTimer[group]) {
-        engine.stopTimer(StarryCTRL.endWarningTimer[group]);
-        StarryCTRL.endWarningTimer[group] = 0;
+    if (!StarryCTRL.endWarningTimer[group]) {
+        return; // not active — avoid spamming LED-off on every position update
     }
+    engine.stopTimer(StarryCTRL.endWarningTimer[group]);
+    StarryCTRL.endWarningTimer[group] = 0;
     StarryCTRL.endWarningFlashState[group] = false;
     StarryCTRL.endWarningLeds[group].forEach(function(note) {
         StarryCTRL.sendLed(note, false);
@@ -168,6 +169,16 @@ StarryCTRL.init = function() {
             }),
             engine.makeConnection(group, "playposition", function(pos) {
                 StarryCTRL.checkEndWarning(group, pos);
+            }),
+            // playposition stops updating once the deck stops, so pause and
+            // track end are caught here to shut the warning off.
+            engine.makeConnection(group, "play", function(value) {
+                if (value > 0) {
+                    StarryCTRL.checkEndWarning(group,
+                        engine.getValue(group, "playposition"));
+                } else {
+                    StarryCTRL.stopEndWarning(group);
+                }
             })
         );
     });

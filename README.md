@@ -65,6 +65,10 @@ the bottom-left ▶ transport button.
 | 7 (deck 2) | Reloop/exit | free | free | free |
 | 8 (deck 2) | free | Sync · *shift: tempo range* | Cue · *shift: cue at start* | Play · *shift: reverse* |
 
+The free R-button LEDs on strips 2/3 (deck 1) and 6/7 (deck 2) double as
+an end-of-track warning: they flash while a playing deck has less than
+30 seconds left (`endWarningSecs` / `endWarningFlashMs` in the script).
+
 ### Bottom row (left to right)
 
 | Button | Function | Shift |

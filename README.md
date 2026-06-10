@@ -18,6 +18,11 @@ button** instead.
 
 ## Layout
 
+![Control layout](layout.png)
+
+A visual map of every control is in `layout.png` / `layout.svg`
+(regenerate with `python3 generate-layout.py` after mapping changes).
+
 Strips are numbered 1–8 left to right. Each strip is a fader plus a
 column of four buttons (M, S, R, □ top to bottom). "Shift" means holding
 the bottom-left ▶ transport button.

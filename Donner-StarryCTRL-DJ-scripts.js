@@ -213,7 +213,7 @@ StarryCTRL.init = function() {
         );
     });
     StarryCTRL.connections.push(
-        engine.makeConnection("[Microphone]", "talkover", function(value) {
+        engine.makeConnection("[Microphone1]", "talkover", function(value) {
             StarryCTRL.sendLed(StarryCTRL.LED.mic, value > 0);
         }),
         engine.makeConnection("[Recording]", "status", StarryCTRL.updateLiveLed),
@@ -515,6 +515,7 @@ StarryCTRL.liveButton = function(channel, control, value, status, group) {
         engine.setValue("[Recording]", "toggle_recording", 0);
     }
     engine.setValue("[Shoutcast]", "enabled", goLive ? 1 : 0);
+    StarryCTRL.updateLiveLed();
 };
 
 // Live LED: lit while recording or while the broadcast connection is up.

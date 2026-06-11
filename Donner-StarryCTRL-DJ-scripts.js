@@ -41,11 +41,21 @@ StarryCTRL.loopInHeld = {"[Channel1]": false, "[Channel2]": false};
 StarryCTRL.loopOutHeld = {"[Channel1]": false, "[Channel2]": false};
 StarryCTRL.connections = [];
 StarryCTRL.fxConnections = [];
-// End-of-track warning: flash the four unused middle LEDs of the R row
-// (0x01, 0x02 = Deck 1 side; 0x05, 0x06 = Deck 2 side)
-StarryCTRL.endWarningLeds = {"[Channel1]": [0x01, 0x02], "[Channel2]": [0x05, 0x06]};
+// End-of-track warning: flash the full M+S+R button columns of strips 1-3
+// (deck 1 side) and 6-8 (deck 2 side). Several of these double as live
+// indicators — loop (strip 3/7 M), sync (strip 1/8 S) and cue (strip 1/8 R)
+// — so their connections hold off while the warning is flashing and
+// stopEndWarning restores their real states.
+StarryCTRL.endWarningLeds = {
+    "[Channel1]": [0x10, 0x11, 0x12, 0x08, 0x09, 0x0A, 0x00, 0x01, 0x02],
+    "[Channel2]": [0x15, 0x16, 0x17, 0x0D, 0x0E, 0x0F, 0x05, 0x06, 0x07],
+};
 StarryCTRL.endWarningTimer = {"[Channel1]": 0, "[Channel2]": 0};
 StarryCTRL.endWarningFlashState = {"[Channel1]": false, "[Channel2]": false};
+
+// Always-on LEDs: M+S of strips 4 and 5 light the middle of the unit as a
+// landmark for the crossfader (fader 5).
+StarryCTRL.landmarkLeds = [0x13, 0x0B, 0x14, 0x0C];
 
 StarryCTRL.LED = {
     cue: {"[Channel1]": 0x00, "[Channel2]": 0x07},
@@ -64,6 +74,7 @@ StarryCTRL.allLeds = [
     0x00, 0x01, 0x02, 0x05, 0x06, 0x07,
     0x18, 0x1F, 0x08, 0x0F, 0x10, 0x14, 0x11, 0x15,
     0x12, 0x16, 0x09, 0x0C, 0x0A, 0x0D, 0x03, 0x04, 0x1B, 0x1C,
+    0x13, 0x0B, 0x17,
     0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x2E, 0x2F, 0x60, 0x61, 0x62, 0x63,
 ];
 
@@ -121,6 +132,13 @@ StarryCTRL.stopEndWarning = function(group) {
     StarryCTRL.endWarningLeds[group].forEach(function(note) {
         StarryCTRL.sendLed(note, false);
     });
+    // the warning borrows live indicator LEDs — restore their real states
+    StarryCTRL.sendLed(StarryCTRL.LED.cue[group],
+        engine.getValue(group, "cue_indicator") > 0);
+    StarryCTRL.sendLed(StarryCTRL.LED.sync[group],
+        engine.getValue(group, "sync_enabled") > 0);
+    StarryCTRL.sendLed(StarryCTRL.LED.loop[group],
+        engine.getValue(group, "loop_enabled") > 0);
 };
 
 StarryCTRL.checkEndWarning = function(group, pos) {
@@ -149,19 +167,31 @@ StarryCTRL.init = function() {
     StarryCTRL.allLeds.forEach(function(note) {
         StarryCTRL.sendLed(note, false);
     });
+    StarryCTRL.landmarkLeds.forEach(function(note) {
+        StarryCTRL.sendLed(note, true);
+    });
 
     ["[Channel1]", "[Channel2]"].forEach(function(group) {
         StarryCTRL.connections.push(
             engine.makeConnection(group, "cue_indicator", function(value) {
+                if (StarryCTRL.endWarningTimer[group]) {
+                    return; // the warning is flashing this LED; restored on stop
+                }
                 StarryCTRL.sendLed(StarryCTRL.LED.cue[group], value > 0);
             }),
             engine.makeConnection(group, "play_indicator", function(value) {
                 StarryCTRL.sendLed(StarryCTRL.LED.play[group], value > 0);
             }),
             engine.makeConnection(group, "sync_enabled", function(value) {
+                if (StarryCTRL.endWarningTimer[group]) {
+                    return; // the warning is flashing this LED; restored on stop
+                }
                 StarryCTRL.sendLed(StarryCTRL.LED.sync[group], value > 0);
             }),
             engine.makeConnection(group, "loop_enabled", function(value) {
+                if (StarryCTRL.endWarningTimer[group]) {
+                    return; // the warning is flashing this LED; restored on stop
+                }
                 StarryCTRL.sendLed(StarryCTRL.LED.loop[group], value > 0);
             }),
             engine.makeConnection(group, "pfl", function(value) {

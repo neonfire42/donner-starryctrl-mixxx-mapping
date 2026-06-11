@@ -65,9 +65,17 @@ the bottom-left ▶ transport button.
 | 7 (deck 2) | Reloop/exit | free | free | free |
 | 8 (deck 2) | free | Sync · *shift: tempo range* | Cue · *shift: cue at start* | Play · *shift: reverse* |
 
-The free R-button LEDs on strips 2/3 (deck 1) and 6/7 (deck 2) double as
-an end-of-track warning: they flash while a playing deck has less than
-30 seconds left (`endWarningSecs` / `endWarningFlashMs` in the script).
+**End-of-track warning:** the M, S and R LEDs of strips 1–3 (deck 1) and
+6–8 (deck 2) flash while a playing deck has less than 30 seconds left
+(`endWarningSecs` / `endWarningFlashMs` in the script). The loop
+(strip 3/7 M), sync (strip 1/8 S) and cue (strip 1/8 R) indicator LEDs
+are borrowed for this and go back to showing their real states when the
+warning ends. The □/play LEDs are left out so play state stays readable.
+
+**Crossfader landmark:** the M and S LEDs of strips 4 and 5 stay lit all
+the time, marking the middle of the unit so the crossfader (fader 5) is
+easy to spot. Strip 5's M/S buttons still work as deck 2 loop in / loop
+÷2 — only their LEDs are repurposed.
 
 ### Bottom row (left to right)
 

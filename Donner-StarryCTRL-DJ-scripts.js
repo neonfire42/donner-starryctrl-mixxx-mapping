@@ -213,7 +213,7 @@ StarryCTRL.init = function() {
         );
     });
     StarryCTRL.connections.push(
-        engine.makeConnection("[Microphone1]", "talkover", function(value) {
+        engine.makeConnection("[Microphone]", "talkover", function(value) {
             StarryCTRL.sendLed(StarryCTRL.LED.mic, value > 0);
         }),
         engine.makeConnection("[Recording]", "status", StarryCTRL.updateLiveLed),

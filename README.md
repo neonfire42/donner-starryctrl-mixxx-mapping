@@ -57,12 +57,12 @@ the bottom-left ▶ transport button.
 | Strip | M | S | R | □ |
 |-------|---|---|---|---|
 | 1 (deck 1) | Loop in (hold + jog = adjust) | Sync · *shift: tempo range* | Cue · *shift: cue at start* | Play · *shift: reverse* |
-| 2 (deck 1) | Loop out (hold + jog = adjust) | Loop ÷2 | free | free |
-| 3 (deck 1) | Reloop/exit | Loop ×2 | free | free |
+| 2 (deck 1) | Loop out (hold + jog = adjust) | Loop ÷2 | free | **REC** LED (button free) |
+| 3 (deck 1) | Reloop/exit | Loop ×2 | free | **REC** LED (button free) |
 | 4 (deck 1) | free | free | **FX1** (assign focused unit to deck 1) | **CUE1** (headphone cue) |
 | 5 (deck 2) | Loop in | Loop ÷2 | **FX2** (assign focused unit to deck 2) | **CUE2** (headphone cue) |
-| 6 (deck 2) | Loop out | Loop ×2 | free | free |
-| 7 (deck 2) | Reloop/exit | free | free | free |
+| 6 (deck 2) | Loop out | Loop ×2 | free | **ON AIR** LED (button free) |
+| 7 (deck 2) | Reloop/exit | free | free | **ON AIR** LED (button free) |
 | 8 (deck 2) | free | Sync · *shift: tempo range* | Cue · *shift: cue at start* | Play · *shift: reverse* |
 
 **End-of-track warning:** the M, S and R LEDs of strips 1–3 (deck 1) and
@@ -90,12 +90,15 @@ easy to spot. Strip 5's M/S buttons still work as deck 2 loop in / loop
 | » | Load selected track → deck 2 | |
 | ▲ | Library focus back | Select item (GoToItem) |
 | ▼ ◀ | free | |
-| ▶ (rightmost) | **Go live**: start/stop recording + broadcasting together — LED lit while live | |
+| ▶ (rightmost) | **Go live**: start/stop recording + broadcasting together — indicators on the □ LEDs of strips 2/3 and 6/7 | |
 
 Notes on go live: broadcasting must be configured in Preferences →
 Live Broadcasting first, or Mixxx will show an error when enabling it.
-The LED lights while recording is running or the broadcast connection
-is up (including the connecting phase); if both drop, it goes dark.
+The go-live button's own LED is not controllable, so the indicators
+sit on otherwise-unused □ buttons: strips 2/3 light while a recording
+is running, and strips 6/7 are a stream watchdog — lit only while the
+broadcast connection is actually up, going dark the moment the stream
+drops or is reconnecting.
 Mixxx persists the broadcasting toggle across restarts, so if you quit
 while live it may ask to reconnect on the next launch.
 

@@ -78,9 +78,11 @@ B = {
         (D1, "Cue", ("shift: cue at start", SHIFT)),
         (D1, "Play", ("shift: reverse", SHIFT))],
     2: [(D1, "Loop out", ("hold + jog adjusts", DIM)),
-        (D1, "Loop ÷2", None), None, None],
+        (D1, "Loop ÷2", None), None,
+        (LED, "REC LED", ("lit while recording", DIM))],
     3: [(D1, "Reloop / exit", None),
-        (D1, "Loop ×2", None), None, None],
+        (D1, "Loop ×2", None), None,
+        (LED, "REC LED", ("lit while recording", DIM))],
     4: [None, None,
         (FX, "FX1 → deck 1", ("assign focused unit", DIM)),
         (D1, "CUE1", ("headphone cue", DIM))],
@@ -89,8 +91,10 @@ B = {
         (FX, "FX2 → deck 2", ("assign focused unit", DIM)),
         (D2, "CUE2", ("headphone cue", DIM))],
     6: [(D2, "Loop out", ("hold + jog adjusts", DIM)),
-        (D2, "Loop ×2", None), None, None],
-    7: [(D2, "Reloop / exit", None), None, None, None],
+        (D2, "Loop ×2", None), None,
+        (LED, "ON AIR LED", ("lit while stream is up", DIM))],
+    7: [(D2, "Reloop / exit", None), None, None,
+        (LED, "ON AIR LED", ("lit while stream is up", DIM))],
     8: [None,
         (D2, "Sync", ("shift: tempo range", SHIFT)),
         (D2, "Cue", ("shift: cue at start", SHIFT)),
@@ -174,7 +178,7 @@ bottom = [
     ("▲",  GRAY,  [("Library back", TEXT), ("shift: select item", SHIFT)], False),
     ("▼",  None,  [("free", "#5b5e63")], False),
     ("◀",  None,  [("free", "#5b5e63")], False),
-    ("▶",  LED,   [("GO LIVE", TEXT), ("record +", DIM), ("broadcast", DIM)], True),
+    ("▶",  LED,   [("GO LIVE", TEXT), ("record + broadcast", DIM), ("LEDs: □ of 2/3 + 6/7", DIM)], False),
 ]
 
 text(X0, 712, "BOTTOM ROW (left to right)", 11, DIM, anchor="start", weight="bold")
@@ -204,7 +208,8 @@ for color, label in legend:
     text(lx + 17, ly, label, 10.5, TEXT, anchor="start")
     lx += 17 + len(label) * 6 + 28
 circle(lx + 4, ly - 4, 4, LED)
-text(lx + 14, ly, "button LED lights while active (mic live / recording+streaming)",
+text(lx + 14, ly, "button LED lights while active (mic live) · □ LEDs: "
+     "strips 2/3 = recording, strips 6/7 = on air (stream watchdog)",
      10.5, TEXT, anchor="start")
 text(X0, ly + 22, "shift: … = function while holding the bottom-left ▶ button",
      10.5, SHIFT, anchor="start")

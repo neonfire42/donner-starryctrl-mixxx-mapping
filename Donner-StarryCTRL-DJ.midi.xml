@@ -358,16 +358,18 @@
             <control>
                 <group>[Master]</group>
                 <key>StarryCTRL.liveButton</key>
-                <description>Right arrow: go live — start/stop recording + broadcasting together. LED lit while live.</description>
+                <description>Right arrow: go live — start/stop recording + broadcasting together. Square LEDs of strips 2/3 show recording, 6/7 show on-air (the arrow's own LED is not controllable).</description>
                 <status>0x90</status>
                 <midino>0x63</midino>
                 <options><script-binding/></options>
             </control>
             <!-- Free buttons: down arrow (0x61),
-                 left arrow (0x62), strip 2/3 R+square
-                 (0x01, 0x02, 0x19, 0x1A), strip 4 M/S (0x13, 0x0B),
-                 strip 6/7 R+square (0x05, 0x06, 0x1D, 0x1E), strip 7 S (0x0E),
-                 strip 8 M (0x17). Free faders: 3, 4, 6 (0xE2, 0xE3, 0xE5). -->
+                 left arrow (0x62), strip 2/3 R (0x01, 0x02), strip 4 M/S
+                 (0x13, 0x0B), strip 6/7 R (0x05, 0x06), strip 7 S (0x0E),
+                 strip 8 M (0x17). The square buttons of strips 2/3 and 6/7
+                 (0x19, 0x1A, 0x1D, 0x1E) are free as inputs, but their LEDs
+                 show recording (2/3) and on-air (6/7).
+                 Free faders: 3, 4, 6 (0xE2, 0xE3, 0xE5). -->
         </controls>
         <outputs/>
     </controller>

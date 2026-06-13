@@ -61,39 +61,37 @@ STRIP_W, PITCH, X0 = 160, 175, 30
 
 # (chip color, [label lines]) — lines are (text, color)
 knobs = [
-    (D1,   [("Deck 1 jog (pitch nudge)", TEXT), ("hold loop in/out: adjust", DIM), ("shift: search", SHIFT)]),
+    (D1,   [("Deck 1 jog (pitch nudge)", TEXT), ("shift: search", SHIFT)]),
     (GRAY, [("Headphone level", TEXT)]),
     (GRAY, [("Cue ↔ master", TEXT), ("headphone mix", TEXT)]),
     (D1,   [("Deck 1 filter", TEXT), ("(superknob)", DIM)]),
     (GRAY, [("Library scroll", TEXT), ("shift: waveform zoom", SHIFT)]),
     (D2,   [("Deck 2 filter", TEXT), ("(superknob)", DIM)]),
     (FX,   [("FX dry/wet (focused unit)", TEXT), ("shift: metaknob", SHIFT)]),
-    (D2,   [("Deck 2 jog (pitch nudge)", TEXT), ("hold loop in/out: adjust", DIM), ("shift: search", SHIFT)]),
+    (D2,   [("Deck 2 jog (pitch nudge)", TEXT), ("shift: search", SHIFT)]),
 ]
 
 # per strip: list of 4 buttons (M, S, R, square): (chip color, line1, line2) or None=free
 B = {
-    1: [(D1, "Loop in", ("hold + jog adjusts", DIM)),
+    1: [None,
         (D1, "Sync", ("shift: tempo range", SHIFT)),
         (D1, "Cue", ("shift: cue at start", SHIFT)),
         (D1, "Play", ("shift: reverse", SHIFT))],
-    2: [(D1, "Loop out", ("hold + jog adjusts", DIM)),
-        (D1, "Loop ÷2", None), None,
+    2: [None, None, None,
         (LED, "REC LED", ("lit while recording", DIM))],
-    3: [(D1, "Reloop / exit", None),
-        (D1, "Loop ×2", None), None,
+    3: [None, None, None,
         (LED, "REC LED", ("lit while recording", DIM))],
-    4: [None, None,
-        (FX, "FX1 → deck 1", ("assign focused unit", DIM)),
+    4: [(D1, "Kill Hi", ("EQ high band", DIM)),
+        (D1, "Kill Mid", ("EQ mid band", DIM)),
+        (D1, "Kill Low", ("EQ low band", DIM)),
         (D1, "CUE1", ("headphone cue", DIM))],
-    5: [(D2, "Loop in", ("hold + jog adjusts", DIM)),
-        (D2, "Loop ÷2", None),
-        (FX, "FX2 → deck 2", ("assign focused unit", DIM)),
+    5: [(D2, "Kill Hi", ("EQ high band", DIM)),
+        (D2, "Kill Mid", ("EQ mid band", DIM)),
+        (D2, "Kill Low", ("EQ low band", DIM)),
         (D2, "CUE2", ("headphone cue", DIM))],
-    6: [(D2, "Loop out", ("hold + jog adjusts", DIM)),
-        (D2, "Loop ×2", None), None,
+    6: [None, None, None,
         (LED, "ON AIR LED", ("lit while stream is up", DIM))],
-    7: [(D2, "Reloop / exit", None), None, None,
+    7: [None, None, None,
         (LED, "ON AIR LED", ("lit while stream is up", DIM))],
     8: [None,
         (D2, "Sync", ("shift: tempo range", SHIFT)),
@@ -113,8 +111,27 @@ faders = [
 ]
 
 ROWS = "MSR□"
-# (strip, row) buttons whose LED stays lit as the crossfader landmark
-LANDMARK = {(4, 0), (4, 1), (5, 0), (5, 1)}
+# EQ kill LEDs are normally lit (dark only when a band is killed); a dot marks
+# them, doubling as the crossfader landmark since they usually stay on.
+LANDMARK = {(4, 0), (4, 1), (4, 2), (5, 0), (5, 1), (5, 2)}
+# (strip, row) -> fill order of the track-progress snake (M, then S, then R)
+PROGRESS = {
+    (1, 0): 1, (2, 0): 2, (3, 0): 3,
+    (1, 1): 4, (2, 1): 5, (3, 1): 6,
+    (1, 2): 7, (2, 2): 8, (3, 2): 9,
+    (6, 0): 1, (7, 0): 2, (8, 0): 3,
+    (6, 1): 4, (7, 1): 5, (8, 1): 6,
+    (6, 2): 7, (7, 2): 8, (8, 2): 9,
+}
+
+
+def progress_marker(x, y, strip, row):
+    n = PROGRESS.get((strip, row))
+    if n:
+        text(x + STRIP_W - 16, y + 14, str(n), 9, LED, weight="bold")
+
+
+
 for i in range(8):
     x = X0 + i * PITCH
     cx = x + STRIP_W / 2
@@ -140,6 +157,7 @@ for i in range(8):
             text(x + 44, y + 27, "free", 10, "#5b5e63", anchor="start", style='font-style="italic"')
             if (i + 1, row) in LANDMARK:
                 circle(x + STRIP_W - 18, y + 10, 4, LED)
+            progress_marker(x, y, i + 1, row)
             continue
         color, l1, l2 = spec
         rect(x + 8, y, STRIP_W - 16, 46, BTN_BG, stroke=STROKE)
@@ -152,6 +170,7 @@ for i in range(8):
             text(x + 44, y + 35, l2[0], 9, l2[1], anchor="start")
         if (i + 1, row) in LANDMARK:
             circle(x + STRIP_W - 18, y + 10, 4, LED)
+        progress_marker(x, y, i + 1, row)
 
     # fader
     color, l1, l2 = faders[i]
@@ -214,12 +233,13 @@ text(lx + 14, ly, "button LED lights while active (mic live) · □ LEDs: "
 text(X0, ly + 22, "shift: … = function while holding the bottom-left ▶ button",
      10.5, SHIFT, anchor="start")
 text(X0, ly + 40,
-     "End-of-track warning: the M, S and R LEDs of strips 1–3 (deck 1) "
-     "and 6–8 (deck 2) flash when a playing deck has <30 s left",
+     "Track progress: the M/S/R LEDs of strips 1–3 (deck 1) and 6–8 (deck 2) "
+     "fill in the red-numbered order as the track plays (one segment per "
+     "ninth); all nine flash when <30 s remain. Cue shows on the □/play LED",
      10.5, TEXT, anchor="start")
 text(X0, ly + 58,
-     "Buttons marked with a dot (M/S of strips 4–5) keep their LED lit as a "
-     "landmark for the crossfader; strip 5's still work as loop in / loop ÷2",
+     "EQ kills (M/S/R of strips 4–5, dotted) cut the high/mid/low band of each "
+     "deck; their LEDs stay lit while the band passes and go dark when killed",
      10.5, TEXT, anchor="start")
 text(X0, ly + 78,
      "Generated by generate-layout.py · mapping files: "

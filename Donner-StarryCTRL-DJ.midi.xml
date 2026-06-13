@@ -117,14 +117,6 @@
             <!-- ============ Strip 1 (deck 1) ============ -->
             <control>
                 <group>[Channel1]</group>
-                <key>StarryCTRL.loopInButton</key>
-                <description>Strip 1 M: loop in (hold + jog knob to adjust).</description>
-                <status>0x90</status>
-                <midino>0x10</midino>
-                <options><script-binding/></options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
                 <key>StarryCTRL.syncButton</key>
                 <description>Strip 1 S: sync / shift: tempo range.</description>
                 <status>0x90</status>
@@ -148,47 +140,30 @@
                 <options><script-binding/></options>
             </control>
 
-            <!-- ============ Strip 2 (deck 1) ============ -->
-            <control>
-                <group>[Channel1]</group>
-                <key>StarryCTRL.loopOutButton</key>
-                <description>Strip 2 M: loop out (hold + jog knob to adjust).</description>
-                <status>0x90</status>
-                <midino>0x11</midino>
-                <options><script-binding/></options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>StarryCTRL.loopHalveButton</key>
-                <description>Strip 2 S: loop halve.</description>
-                <status>0x90</status>
-                <midino>0x09</midino>
-                <options><script-binding/></options>
-            </control>
+            <!-- Strips 2 and 3 (deck 1): buttons free after loop removal;
+                 their M/S/R LEDs are track-progress segments. -->
 
-            <!-- ============ Strip 3 (deck 1) ============ -->
+            <!-- ============ Strip 4 (deck 1 EQ kills) ============ -->
             <control>
-                <group>[Channel1]</group>
-                <key>StarryCTRL.reloopButton</key>
-                <description>Strip 3 M: reloop/exit.</description>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>StarryCTRL.eqKillHigh</key>
+                <description>Strip 4 M: kill deck 1 high EQ.</description>
                 <status>0x90</status>
-                <midino>0x12</midino>
+                <midino>0x13</midino>
                 <options><script-binding/></options>
             </control>
             <control>
-                <group>[Channel1]</group>
-                <key>StarryCTRL.loopDoubleButton</key>
-                <description>Strip 3 S: loop double.</description>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>StarryCTRL.eqKillMid</key>
+                <description>Strip 4 S: kill deck 1 mid EQ.</description>
                 <status>0x90</status>
-                <midino>0x0A</midino>
+                <midino>0x0B</midino>
                 <options><script-binding/></options>
             </control>
-
-            <!-- ============ Strip 4 (deck 1 FX) ============ -->
             <control>
-                <group>[Channel1]</group>
-                <key>StarryCTRL.fxAssignButton</key>
-                <description>Strip 4 R: FX1 — assign focused effect unit to deck 1.</description>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>StarryCTRL.eqKillLow</key>
+                <description>Strip 4 R: kill deck 1 low EQ.</description>
                 <status>0x90</status>
                 <midino>0x03</midino>
                 <options><script-binding/></options>
@@ -202,27 +177,27 @@
                 <options><script-binding/></options>
             </control>
 
-            <!-- ============ Strip 5 (deck 2 + FX) ============ -->
+            <!-- ============ Strip 5 (deck 2 EQ kills) ============ -->
             <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.loopInButton</key>
-                <description>Strip 5 M: loop in (hold + jog knob to adjust).</description>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>StarryCTRL.eqKillHigh</key>
+                <description>Strip 5 M: kill deck 2 high EQ.</description>
                 <status>0x90</status>
                 <midino>0x14</midino>
                 <options><script-binding/></options>
             </control>
             <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.loopHalveButton</key>
-                <description>Strip 5 S: loop halve.</description>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>StarryCTRL.eqKillMid</key>
+                <description>Strip 5 S: kill deck 2 mid EQ.</description>
                 <status>0x90</status>
                 <midino>0x0C</midino>
                 <options><script-binding/></options>
             </control>
             <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.fxAssignButton</key>
-                <description>Strip 5 R: FX2 — assign focused effect unit to deck 2.</description>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>StarryCTRL.eqKillLow</key>
+                <description>Strip 5 R: kill deck 2 low EQ.</description>
                 <status>0x90</status>
                 <midino>0x04</midino>
                 <options><script-binding/></options>
@@ -236,33 +211,8 @@
                 <options><script-binding/></options>
             </control>
 
-            <!-- ============ Strip 6 (deck 2) ============ -->
-            <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.loopOutButton</key>
-                <description>Strip 6 M: loop out (hold + jog knob to adjust).</description>
-                <status>0x90</status>
-                <midino>0x15</midino>
-                <options><script-binding/></options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.loopDoubleButton</key>
-                <description>Strip 6 S: loop double.</description>
-                <status>0x90</status>
-                <midino>0x0D</midino>
-                <options><script-binding/></options>
-            </control>
-
-            <!-- ============ Strip 7 (deck 2) ============ -->
-            <control>
-                <group>[Channel2]</group>
-                <key>StarryCTRL.reloopButton</key>
-                <description>Strip 7 M: reloop/exit.</description>
-                <status>0x90</status>
-                <midino>0x16</midino>
-                <options><script-binding/></options>
-            </control>
+            <!-- Strips 6 and 7 (deck 2): buttons free after loop removal;
+                 their M/S/R LEDs are track-progress segments. -->
 
             <!-- ============ Strip 8 (deck 2) ============ -->
             <control>
@@ -363,13 +313,15 @@
                 <midino>0x63</midino>
                 <options><script-binding/></options>
             </control>
-            <!-- Free buttons: down arrow (0x61),
-                 left arrow (0x62), strip 2/3 R (0x01, 0x02), strip 4 M/S
-                 (0x13, 0x0B), strip 6/7 R (0x05, 0x06), strip 7 S (0x0E),
-                 strip 8 M (0x17). The square buttons of strips 2/3 and 6/7
-                 (0x19, 0x1A, 0x1D, 0x1E) are free as inputs, but their LEDs
-                 show recording (2/3) and on-air (6/7).
-                 Free faders: 3, 4, 6 (0xE2, 0xE3, 0xE5). -->
+            <!-- Loop controls were removed to simplify the layout, freeing the
+                 M buttons of strips 1-3/5-7 and the S buttons of strips 2/3/5/6.
+                 The cue point now shows on the play (square) LED; sync still
+                 works (strip 1/8 S) but no longer has its own indicator LED.
+                 The M, S and R LEDs of strips 1-3 and 6-8 form a 9-segment
+                 track progress bar that flashes as the end-of-track warning.
+                 Square LEDs of strips 2/3 and 6/7 (0x19, 0x1A, 0x1D, 0x1E)
+                 show recording and on-air. Free faders: 3, 4, 6 (0xE2, 0xE3,
+                 0xE5). -->
         </controls>
         <outputs/>
     </controller>

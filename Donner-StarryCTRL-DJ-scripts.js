@@ -24,46 +24,60 @@ var StarryCTRL = {};
 // ---------------------------------------------------------------------------
 StarryCTRL.jogNudge = 2;          // strength of pitch nudge per encoder tick
 StarryCTRL.searchStep = 0.005;    // fraction of track per tick (shift + jog)
-StarryCTRL.loopAdjustSecs = 0.01; // loop point move per tick while held
 StarryCTRL.zoomStep = 0.3;        // waveform zoom per tick
 StarryCTRL.knobStep = 0.025;      // parameter change per tick for level knobs
 StarryCTRL.numFxUnits = 2;        // how many effect units shift+prev/next cycles
 StarryCTRL.tempoRanges = [0.08, 0.16, 0.24, 0.5];
 StarryCTRL.endWarningSecs = 30;   // seconds before track end to start flashing
 StarryCTRL.endWarningFlashMs = 500; // flash interval in milliseconds
+StarryCTRL.pollMs = 200;          // how often to sample playposition (5 Hz)
 
 // ---------------------------------------------------------------------------
 // State
 // ---------------------------------------------------------------------------
 StarryCTRL.shift = false;
 StarryCTRL.focusedUnit = 1;
-StarryCTRL.loopInHeld = {"[Channel1]": false, "[Channel2]": false};
-StarryCTRL.loopOutHeld = {"[Channel1]": false, "[Channel2]": false};
 StarryCTRL.connections = [];
 StarryCTRL.fxConnections = [];
-// End-of-track warning: flash the full M+S+R button columns of strips 1-3
-// (deck 1 side) and 6-8 (deck 2 side). Several of these double as live
-// indicators — loop (strip 3/7 M), sync (strip 1/8 S) and cue (strip 1/8 R)
-// — so their connections hold off while the warning is flashing and
-// stopEndWarning restores their real states.
-StarryCTRL.endWarningLeds = {
+// Track progress "snake": the M, S and R LEDs of strips 1-3 (deck 1) and
+// 6-8 (deck 2) form a 9-segment progress bar that fills left to right and
+// top to bottom as the track plays — M1 M2 M3, then S1 S2 S3, then R1 R2 R3.
+// Segment k lights once playposition passes k/9; the 9th segment only ever
+// appears as part of the end-of-track warning, which flashes all nine
+// segments for the last endWarningSecs. The bar is empty while no track is
+// loaded and after a track has ended. The bar owns these LEDs outright —
+// loop is gone and sync/cue no longer have dedicated indicators here.
+StarryCTRL.progressLeds = {
     "[Channel1]": [0x10, 0x11, 0x12, 0x08, 0x09, 0x0A, 0x00, 0x01, 0x02],
     "[Channel2]": [0x15, 0x16, 0x17, 0x0D, 0x0E, 0x0F, 0x05, 0x06, 0x07],
 };
+StarryCTRL.progressLit = {"[Channel1]": -1, "[Channel2]": -1}; // -1 = force redraw
 StarryCTRL.endWarningTimer = {"[Channel1]": 0, "[Channel2]": 0};
 StarryCTRL.endWarningFlashState = {"[Channel1]": false, "[Channel2]": false};
+// playposition fires every audio buffer, so we poll it on this timer instead of
+// connecting to it — a 6-segment bar and a 30s warning need nothing faster.
+StarryCTRL.pollTimer = 0;
 
-// Always-on LEDs: M+S of strips 4 and 5 light the middle of the unit as a
-// landmark for the crossfader (fader 5).
-StarryCTRL.landmarkLeds = [0x13, 0x0B, 0x14, 0x0C];
+// EQ kill buttons live on strips 4 (deck 1) and 5 (deck 2): M = high,
+// S = mid, R = low. The LED is lit while the band passes and goes dark when
+// the band is killed, so the six normally stay on (also marking the middle
+// of the unit, where the crossfader is) and a dark LED flags a killed band.
+// [EQ effect group, kill control, LED note]
+StarryCTRL.eqKillLeds = [
+    ["[EqualizerRack1_[Channel1]_Effect1]", "button_parameter3", 0x13],
+    ["[EqualizerRack1_[Channel1]_Effect1]", "button_parameter2", 0x0B],
+    ["[EqualizerRack1_[Channel1]_Effect1]", "button_parameter1", 0x03],
+    ["[EqualizerRack1_[Channel2]_Effect1]", "button_parameter3", 0x14],
+    ["[EqualizerRack1_[Channel2]_Effect1]", "button_parameter2", 0x0C],
+    ["[EqualizerRack1_[Channel2]_Effect1]", "button_parameter1", 0x04],
+];
 
 StarryCTRL.LED = {
-    cue: {"[Channel1]": 0x00, "[Channel2]": 0x07},
+    // The cue point is shown on the play LED (lit while playing or parked at
+    // the cue point); there is no separate cue/sync/loop indicator anymore —
+    // the R row those used to live on is now part of the progress bar.
     play: {"[Channel1]": 0x18, "[Channel2]": 0x1F},
-    sync: {"[Channel1]": 0x08, "[Channel2]": 0x0F},
-    loop: {"[Channel1]": 0x12, "[Channel2]": 0x16},
     pfl: {"[Channel1]": 0x1B, "[Channel2]": 0x1C},
-    fxAssign: {"[Channel1]": 0x03, "[Channel2]": 0x04},
     fxOn: 0x5F,
     shift: 0x5E,
     mic: 0x5D,
@@ -78,7 +92,7 @@ StarryCTRL.LED = {
 StarryCTRL.allLeds = [
     0x00, 0x01, 0x02, 0x05, 0x06, 0x07,
     0x18, 0x1F, 0x08, 0x0F, 0x10, 0x14, 0x11, 0x15,
-    0x12, 0x16, 0x09, 0x0C, 0x0A, 0x0D, 0x03, 0x04, 0x1B, 0x1C,
+    0x12, 0x16, 0x09, 0x0C, 0x0A, 0x0D, 0x0E, 0x03, 0x04, 0x1B, 0x1C,
     0x13, 0x0B, 0x17, 0x19, 0x1A, 0x1D, 0x1E,
     0x5B, 0x5C, 0x5D, 0x5E, 0x5F, 0x2E, 0x2F, 0x60, 0x61, 0x62,
 ];
@@ -105,14 +119,14 @@ StarryCTRL.effectGroup = function() {
 };
 
 // ---------------------------------------------------------------------------
-// End-of-track warning
+// Track progress bar + end-of-track warning
 // ---------------------------------------------------------------------------
 StarryCTRL.startEndWarning = function(group) {
     if (StarryCTRL.endWarningTimer[group]) {
         return;
     }
     StarryCTRL.endWarningFlashState[group] = true;
-    StarryCTRL.endWarningLeds[group].forEach(function(note) {
+    StarryCTRL.progressLeds[group].forEach(function(note) {
         StarryCTRL.sendLed(note, true);
     });
     StarryCTRL.endWarningTimer[group] = engine.beginTimer(
@@ -120,7 +134,7 @@ StarryCTRL.startEndWarning = function(group) {
         function() {
             StarryCTRL.endWarningFlashState[group] =
                 !StarryCTRL.endWarningFlashState[group];
-            StarryCTRL.endWarningLeds[group].forEach(function(note) {
+            StarryCTRL.progressLeds[group].forEach(function(note) {
                 StarryCTRL.sendLed(note, StarryCTRL.endWarningFlashState[group]);
             });
         }
@@ -134,16 +148,31 @@ StarryCTRL.stopEndWarning = function(group) {
     engine.stopTimer(StarryCTRL.endWarningTimer[group]);
     StarryCTRL.endWarningTimer[group] = 0;
     StarryCTRL.endWarningFlashState[group] = false;
-    StarryCTRL.endWarningLeds[group].forEach(function(note) {
-        StarryCTRL.sendLed(note, false);
+    // hand the LEDs back to the progress bar
+    StarryCTRL.progressLit[group] = -1;
+    StarryCTRL.updateProgress(group, engine.getValue(group, "playposition"));
+};
+
+// Redraw the 6-segment snake; cheap no-op unless the lit count changed.
+StarryCTRL.updateProgress = function(group, pos) {
+    if (StarryCTRL.endWarningTimer[group]) {
+        return; // the warning flash owns these LEDs until it stops
+    }
+    // Empty bar when nothing is loaded (playposition idles at 0.5 then) and
+    // when the track has run out (playposition rests at ~1.0 after the end).
+    const duration = engine.getValue(group, "duration");
+    const ended = duration > 0 && duration * (1 - pos) < 0.25;
+    let lit = 0;
+    if (engine.getValue(group, "track_loaded") > 0 && !ended) {
+        lit = Math.min(8, Math.max(0, Math.floor(pos * 9)));
+    }
+    if (lit === StarryCTRL.progressLit[group]) {
+        return;
+    }
+    StarryCTRL.progressLit[group] = lit;
+    StarryCTRL.progressLeds[group].forEach(function(note, i) {
+        StarryCTRL.sendLed(note, i < lit);
     });
-    // the warning borrows live indicator LEDs — restore their real states
-    StarryCTRL.sendLed(StarryCTRL.LED.cue[group],
-        engine.getValue(group, "cue_indicator") > 0);
-    StarryCTRL.sendLed(StarryCTRL.LED.sync[group],
-        engine.getValue(group, "sync_enabled") > 0);
-    StarryCTRL.sendLed(StarryCTRL.LED.loop[group],
-        engine.getValue(group, "loop_enabled") > 0);
 };
 
 StarryCTRL.checkEndWarning = function(group, pos) {
@@ -159,6 +188,26 @@ StarryCTRL.checkEndWarning = function(group, pos) {
     StarryCTRL.stopEndWarning(group);
 };
 
+// Sample both decks' playposition on a timer. Connecting to playposition
+// directly would run this work every audio buffer (the dominant CPU cost in
+// this mapping); polling at pollMs keeps it at a few hertz.
+StarryCTRL.pollPositions = function() {
+    ["[Channel1]", "[Channel2]"].forEach(function(group) {
+        const pos = engine.getValue(group, "playposition");
+        StarryCTRL.checkEndWarning(group, pos);
+        StarryCTRL.updateProgress(group, pos);
+    });
+};
+
+// □ / play LED: Mixxx's own play_indicator blinks while a deck sits at its
+// cue point, so it is not used. Instead the LED is solid while playing and
+// solid while parked at the cue (the same state that lights the cue LED).
+StarryCTRL.updatePlayLed = function(group) {
+    const lit = engine.getValue(group, "play") > 0 ||
+        engine.getValue(group, "cue_indicator") > 0;
+    StarryCTRL.sendLed(StarryCTRL.LED.play[group], lit);
+};
+
 // ---------------------------------------------------------------------------
 // Lifecycle
 // ---------------------------------------------------------------------------
@@ -172,48 +221,40 @@ StarryCTRL.init = function() {
     StarryCTRL.allLeds.forEach(function(note) {
         StarryCTRL.sendLed(note, false);
     });
-    StarryCTRL.landmarkLeds.forEach(function(note) {
-        StarryCTRL.sendLed(note, true);
-    });
 
     ["[Channel1]", "[Channel2]"].forEach(function(group) {
         StarryCTRL.connections.push(
-            engine.makeConnection(group, "cue_indicator", function(value) {
-                if (StarryCTRL.endWarningTimer[group]) {
-                    return; // the warning is flashing this LED; restored on stop
-                }
-                StarryCTRL.sendLed(StarryCTRL.LED.cue[group], value > 0);
-            }),
-            engine.makeConnection(group, "play_indicator", function(value) {
-                StarryCTRL.sendLed(StarryCTRL.LED.play[group], value > 0);
-            }),
-            engine.makeConnection(group, "sync_enabled", function(value) {
-                if (StarryCTRL.endWarningTimer[group]) {
-                    return; // the warning is flashing this LED; restored on stop
-                }
-                StarryCTRL.sendLed(StarryCTRL.LED.sync[group], value > 0);
-            }),
-            engine.makeConnection(group, "loop_enabled", function(value) {
-                if (StarryCTRL.endWarningTimer[group]) {
-                    return; // the warning is flashing this LED; restored on stop
-                }
-                StarryCTRL.sendLed(StarryCTRL.LED.loop[group], value > 0);
+            engine.makeConnection(group, "cue_indicator", function() {
+                StarryCTRL.updatePlayLed(group);
             }),
             engine.makeConnection(group, "pfl", function(value) {
                 StarryCTRL.sendLed(StarryCTRL.LED.pfl[group], value > 0);
             }),
-            engine.makeConnection(group, "playposition", function(pos) {
-                StarryCTRL.checkEndWarning(group, pos);
+            // load/eject so the bar clears without waiting for a position update
+            engine.makeConnection(group, "track_loaded", function() {
+                StarryCTRL.updateProgress(group,
+                    engine.getValue(group, "playposition"));
             }),
             // playposition stops updating once the deck stops, so pause and
-            // track end are caught here to shut the warning off.
+            // track end are caught here to shut the warning off (the bar
+            // freezes at the paused position via stopEndWarning's redraw).
             engine.makeConnection(group, "play", function(value) {
+                StarryCTRL.updatePlayLed(group);
                 if (value > 0) {
                     StarryCTRL.checkEndWarning(group,
                         engine.getValue(group, "playposition"));
                 } else {
                     StarryCTRL.stopEndWarning(group);
                 }
+            })
+        );
+    });
+    // EQ kill LEDs: lit while the band passes, dark while it is killed.
+    StarryCTRL.eqKillLeds.forEach(function(band) {
+        const note = band[2];
+        StarryCTRL.connections.push(
+            engine.makeConnection(band[0], band[1], function(value) {
+                StarryCTRL.sendLed(note, value <= 0);
             })
         );
     });
@@ -227,9 +268,16 @@ StarryCTRL.init = function() {
     StarryCTRL.connections.forEach(function(conn) { conn.trigger(); });
 
     StarryCTRL.connectFx();
+
+    StarryCTRL.pollTimer = engine.beginTimer(StarryCTRL.pollMs,
+        StarryCTRL.pollPositions);
 };
 
 StarryCTRL.shutdown = function() {
+    if (StarryCTRL.pollTimer) {
+        engine.stopTimer(StarryCTRL.pollTimer);
+        StarryCTRL.pollTimer = 0;
+    }
     ["[Channel1]", "[Channel2]"].forEach(function(group) {
         StarryCTRL.stopEndWarning(group);
     });
@@ -240,18 +288,11 @@ StarryCTRL.shutdown = function() {
     });
 };
 
-// FX LEDs follow the focused unit, so they are reconnected when it changes.
+// The FX-on LED follows the focused effect unit, so it is reconnected when
+// the focused unit changes.
 StarryCTRL.connectFx = function() {
     StarryCTRL.fxConnections.forEach(function(conn) { conn.disconnect(); });
     StarryCTRL.fxConnections = [];
-    const unit = StarryCTRL.unitGroup();
-    ["[Channel1]", "[Channel2]"].forEach(function(group) {
-        StarryCTRL.fxConnections.push(
-            engine.makeConnection(unit, "group_" + group + "_enable", function(value) {
-                StarryCTRL.sendLed(StarryCTRL.LED.fxAssign[group], value > 0);
-            })
-        );
-    });
     StarryCTRL.fxConnections.push(
         engine.makeConnection(StarryCTRL.effectGroup(), "enabled", function(value) {
             StarryCTRL.sendLed(StarryCTRL.LED.fxOn, value > 0);
@@ -300,17 +341,6 @@ StarryCTRL.jogKnob = function(channel, control, value, status, group) {
             ticks * StarryCTRL.searchStep;
         pos = Math.max(0, Math.min(1, pos));
         engine.setParameter(group, "playposition", pos);
-    } else if (StarryCTRL.loopInHeld[group] || StarryCTRL.loopOutHeld[group]) {
-        const key = StarryCTRL.loopInHeld[group] ?
-            "loop_start_position" : "loop_end_position";
-        const current = engine.getValue(group, key);
-        if (current < 0) {
-            return; // no loop point set yet
-        }
-        // positions are in stereo samples: 2 * sample rate per second
-        const step = 2 * engine.getValue(group, "track_samplerate") *
-            StarryCTRL.loopAdjustSecs;
-        engine.setValue(group, key, Math.max(0, current + ticks * step));
     } else {
         engine.setValue(group, "jog", ticks * StarryCTRL.jogNudge);
     }
@@ -408,41 +438,24 @@ StarryCTRL.syncButton = function(channel, control, value, status, group) {
     }
 };
 
-// Loop in/out: set the point; hold the button and turn the jog knob to adjust.
-StarryCTRL.loopInButton = function(channel, control, value, status, group) {
-    const pressed = StarryCTRL.isPress(value);
-    StarryCTRL.loopInHeld[group] = pressed;
-    engine.setValue(group, "loop_in", pressed ? 1 : 0);
-};
-
-StarryCTRL.loopOutButton = function(channel, control, value, status, group) {
-    const pressed = StarryCTRL.isPress(value);
-    StarryCTRL.loopOutHeld[group] = pressed;
-    engine.setValue(group, "loop_out", pressed ? 1 : 0);
-};
-
-StarryCTRL.reloopButton = function(channel, control, value, status, group) {
+// EQ kill buttons (strips 4/5 M/S/R = high/mid/low). The XML passes the deck's
+// EQ effect group, so each press just toggles the matching kill control.
+StarryCTRL.toggleKill = function(group, param, value) {
     if (StarryCTRL.isPress(value)) {
-        engine.setValue(group, "reloop_toggle", 1);
+        engine.setValue(group, param, !engine.getValue(group, param));
     }
 };
 
-StarryCTRL.loopHalveButton = function(channel, control, value, status, group) {
-    engine.setValue(group, "loop_halve", StarryCTRL.isPress(value) ? 1 : 0);
+StarryCTRL.eqKillHigh = function(channel, control, value, status, group) {
+    StarryCTRL.toggleKill(group, "button_parameter3", value);
 };
 
-StarryCTRL.loopDoubleButton = function(channel, control, value, status, group) {
-    engine.setValue(group, "loop_double", StarryCTRL.isPress(value) ? 1 : 0);
+StarryCTRL.eqKillMid = function(channel, control, value, status, group) {
+    StarryCTRL.toggleKill(group, "button_parameter2", value);
 };
 
-// FX1/FX2: assign the focused effect unit to this deck
-StarryCTRL.fxAssignButton = function(channel, control, value, status, group) {
-    if (!StarryCTRL.isPress(value)) {
-        return;
-    }
-    const key = "group_" + group + "_enable";
-    const unit = StarryCTRL.unitGroup();
-    engine.setValue(unit, key, !engine.getValue(unit, key));
+StarryCTRL.eqKillLow = function(channel, control, value, status, group) {
+    StarryCTRL.toggleKill(group, "button_parameter1", value);
 };
 
 // CUE1/CUE2: headphone cue (pfl)

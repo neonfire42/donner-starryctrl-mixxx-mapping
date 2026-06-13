@@ -7,23 +7,24 @@
 <circle cx="110.0" cy="152" r="26" fill="#2e333a" stroke="#3182ce" stroke-width="2"/>
 <text x="110.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >1</text>
 <text x="110.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Deck 1 jog (pitch nudge)</text>
-<text x="110.0" y="211" font-size="10" fill="#76797e" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold loop in/out: adjust</text>
-<text x="110.0" y="224" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: search</text>
-<rect x="38" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="44" y="260" width="22" height="22" rx="5" fill="#3182ce"/>
-<text x="55" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="74" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop in</text>
-<text x="74" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold + jog adjusts</text>
+<text x="110.0" y="211" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: search</text>
+<rect x="38" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="44" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="55" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="74" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="174" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >1</text>
 <rect x="38" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="44" y="312" width="22" height="22" rx="5" fill="#3182ce"/>
 <text x="55" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
 <text x="74" y="321" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Sync</text>
 <text x="74" y="335" font-size="9" fill="#f6ad55" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: tempo range</text>
+<text x="174" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >4</text>
 <rect x="38" y="352" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="44" y="364" width="22" height="22" rx="5" fill="#3182ce"/>
 <text x="55" y="379" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="74" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Cue</text>
 <text x="74" y="387" font-size="9" fill="#f6ad55" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: cue at start</text>
+<text x="174" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >7</text>
 <rect x="38" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="44" y="416" width="22" height="22" rx="5" fill="#3182ce"/>
 <text x="55" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -37,19 +38,21 @@
 <circle cx="285.0" cy="152" r="26" fill="#2e333a" stroke="#5a6472" stroke-width="2"/>
 <text x="285.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >2</text>
 <text x="285.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Headphone level</text>
-<rect x="213" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="219" y="260" width="22" height="22" rx="5" fill="#3182ce"/>
-<text x="230" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="249" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop out</text>
-<text x="249" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold + jog adjusts</text>
-<rect x="213" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="219" y="312" width="22" height="22" rx="5" fill="#3182ce"/>
-<text x="230" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
-<text x="249" y="327" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop ÷2</text>
+<rect x="213" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="219" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="230" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="249" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="349" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >2</text>
+<rect x="213" y="300" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="219" y="312" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="230" y="327" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
+<text x="249" y="327" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="349" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >5</text>
 <rect x="213" y="352" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="219" y="364" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="230" y="379" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="249" y="379" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="349" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >8</text>
 <rect x="213" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="219" y="416" width="22" height="22" rx="5" fill="#e53e3e"/>
 <text x="230" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -64,18 +67,21 @@
 <text x="460.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >3</text>
 <text x="460.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Cue ↔ master</text>
 <text x="460.0" y="211" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >headphone mix</text>
-<rect x="388" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="394" y="260" width="22" height="22" rx="5" fill="#3182ce"/>
-<text x="405" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="424" y="275" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Reloop / exit</text>
-<rect x="388" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="394" y="312" width="22" height="22" rx="5" fill="#3182ce"/>
-<text x="405" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
-<text x="424" y="327" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop ×2</text>
+<rect x="388" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="394" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="405" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="424" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="524" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >3</text>
+<rect x="388" y="300" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="394" y="312" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="405" y="327" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
+<text x="424" y="327" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="524" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >6</text>
 <rect x="388" y="352" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="394" y="364" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="405" y="379" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="424" y="379" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="524" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >9</text>
 <rect x="388" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="394" y="416" width="22" height="22" rx="5" fill="#e53e3e"/>
 <text x="405" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -90,21 +96,24 @@
 <text x="635.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >4</text>
 <text x="635.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Deck 1 filter</text>
 <text x="635.0" y="211" font-size="10" fill="#76797e" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >(superknob)</text>
-<rect x="563" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
-<rect x="569" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
-<text x="580" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="599" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<rect x="563" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
+<rect x="569" y="260" width="22" height="22" rx="5" fill="#3182ce"/>
+<text x="580" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="599" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Hi</text>
+<text x="599" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ high band</text>
 <circle cx="697" cy="258" r="4" fill="#e53e3e"/>
-<rect x="563" y="300" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
-<rect x="569" y="312" width="22" height="22" rx="5" fill="#2e3338"/>
-<text x="580" y="327" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
-<text x="599" y="327" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<rect x="563" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
+<rect x="569" y="312" width="22" height="22" rx="5" fill="#3182ce"/>
+<text x="580" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
+<text x="599" y="321" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Mid</text>
+<text x="599" y="335" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ mid band</text>
 <circle cx="697" cy="310" r="4" fill="#e53e3e"/>
 <rect x="563" y="352" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="569" y="364" width="22" height="22" rx="5" fill="#805ad5"/>
+<rect x="569" y="364" width="22" height="22" rx="5" fill="#3182ce"/>
 <text x="580" y="379" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
-<text x="599" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >FX1 → deck 1</text>
-<text x="599" y="387" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >assign focused unit</text>
+<text x="599" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Low</text>
+<text x="599" y="387" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ low band</text>
+<circle cx="697" cy="362" r="4" fill="#e53e3e"/>
 <rect x="563" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="569" y="416" width="22" height="22" rx="5" fill="#3182ce"/>
 <text x="580" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -122,19 +131,21 @@
 <rect x="738" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="744" y="260" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="755" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="774" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop in</text>
-<text x="774" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold + jog adjusts</text>
+<text x="774" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Hi</text>
+<text x="774" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ high band</text>
 <circle cx="872" cy="258" r="4" fill="#e53e3e"/>
 <rect x="738" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="744" y="312" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="755" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
-<text x="774" y="327" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop ÷2</text>
+<text x="774" y="321" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Mid</text>
+<text x="774" y="335" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ mid band</text>
 <circle cx="872" cy="310" r="4" fill="#e53e3e"/>
 <rect x="738" y="352" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="744" y="364" width="22" height="22" rx="5" fill="#805ad5"/>
+<rect x="744" y="364" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="755" y="379" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
-<text x="774" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >FX2 → deck 2</text>
-<text x="774" y="387" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >assign focused unit</text>
+<text x="774" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Kill Low</text>
+<text x="774" y="387" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ low band</text>
+<circle cx="872" cy="362" r="4" fill="#e53e3e"/>
 <rect x="738" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="744" y="416" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="755" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -149,19 +160,21 @@
 <text x="985.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >6</text>
 <text x="985.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Deck 2 filter</text>
 <text x="985.0" y="211" font-size="10" fill="#76797e" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >(superknob)</text>
-<rect x="913" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="919" y="260" width="22" height="22" rx="5" fill="#38a169"/>
-<text x="930" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="949" y="269" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop out</text>
-<text x="949" y="283" font-size="9" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold + jog adjusts</text>
-<rect x="913" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="919" y="312" width="22" height="22" rx="5" fill="#38a169"/>
-<text x="930" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
-<text x="949" y="327" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Loop ×2</text>
+<rect x="913" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="919" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="930" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="949" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1049" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >1</text>
+<rect x="913" y="300" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="919" y="312" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="930" y="327" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
+<text x="949" y="327" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1049" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >4</text>
 <rect x="913" y="352" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="919" y="364" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="930" y="379" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="949" y="379" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1049" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >7</text>
 <rect x="913" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="919" y="416" width="22" height="22" rx="5" fill="#e53e3e"/>
 <text x="930" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -176,18 +189,21 @@
 <text x="1160.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >7</text>
 <text x="1160.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >FX dry/wet (focused unit)</text>
 <text x="1160.0" y="211" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: metaknob</text>
-<rect x="1088" y="248" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
-<rect x="1094" y="260" width="22" height="22" rx="5" fill="#38a169"/>
-<text x="1105" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
-<text x="1124" y="275" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Reloop / exit</text>
+<rect x="1088" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
+<rect x="1094" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
+<text x="1105" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
+<text x="1124" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1224" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >2</text>
 <rect x="1088" y="300" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="1094" y="312" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="1105" y="327" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
 <text x="1124" y="327" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1224" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >5</text>
 <rect x="1088" y="352" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="1094" y="364" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="1105" y="379" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="1124" y="379" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1224" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >8</text>
 <rect x="1088" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="1094" y="416" width="22" height="22" rx="5" fill="#e53e3e"/>
 <text x="1105" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -202,22 +218,24 @@
 <circle cx="1335.0" cy="152" r="26" fill="#2e333a" stroke="#38a169" stroke-width="2"/>
 <text x="1335.0" y="157" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >8</text>
 <text x="1335.0" y="198" font-size="10" fill="#e8e8e8" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Deck 2 jog (pitch nudge)</text>
-<text x="1335.0" y="211" font-size="10" fill="#76797e" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >hold loop in/out: adjust</text>
-<text x="1335.0" y="224" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: search</text>
+<text x="1335.0" y="211" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: search</text>
 <rect x="1263" y="248" width="144" height="46" rx="6" fill="#262a2f" stroke="#33373d"/>
 <rect x="1269" y="260" width="22" height="22" rx="5" fill="#2e3338"/>
 <text x="1280" y="275" font-size="11" fill="#555" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >M</text>
 <text x="1299" y="275" font-size="10" fill="#5b5e63" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-style="italic">free</text>
+<text x="1399" y="262" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >3</text>
 <rect x="1263" y="300" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="1269" y="312" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="1280" y="327" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >S</text>
 <text x="1299" y="321" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Sync</text>
 <text x="1299" y="335" font-size="9" fill="#f6ad55" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: tempo range</text>
+<text x="1399" y="314" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >6</text>
 <rect x="1263" y="352" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="1269" y="364" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="1280" y="379" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >R</text>
 <text x="1299" y="373" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Cue</text>
 <text x="1299" y="387" font-size="9" fill="#f6ad55" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: cue at start</text>
+<text x="1399" y="366" font-size="9" fill="#e53e3e" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >9</text>
 <rect x="1263" y="404" width="144" height="46" rx="6" fill="#373c44" stroke="#4d535c"/>
 <rect x="1269" y="416" width="22" height="22" rx="5" fill="#38a169"/>
 <text x="1280" y="431" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >□</text>
@@ -286,7 +304,7 @@
 <circle cx="489" cy="844" r="4" fill="#e53e3e"/>
 <text x="499" y="848" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >button LED lights while active (mic live) · □ LEDs: strips 2/3 = recording, strips 6/7 = on air (stream watchdog)</text>
 <text x="30" y="870" font-size="10.5" fill="#f6ad55" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >shift: … = function while holding the bottom-left ▶ button</text>
-<text x="30" y="888" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >End-of-track warning: the M, S and R LEDs of strips 1–3 (deck 1) and 6–8 (deck 2) flash when a playing deck has &lt;30 s left</text>
-<text x="30" y="906" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Buttons marked with a dot (M/S of strips 4–5) keep their LED lit as a landmark for the crossfader; strip 5's still work as loop in / loop ÷2</text>
+<text x="30" y="888" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Track progress: the M/S/R LEDs of strips 1–3 (deck 1) and 6–8 (deck 2) fill in the red-numbered order as the track plays (one segment per ninth); all nine flash when &lt;30 s remain. Cue shows on the □/play LED</text>
+<text x="30" y="906" font-size="10.5" fill="#e8e8e8" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >EQ kills (M/S/R of strips 4–5, dotted) cut the high/mid/low band of each deck; their LEDs stay lit while the band passes and go dark when killed</text>
 <text x="30" y="926" font-size="9.5" fill="#76797e" text-anchor="start" font-weight="normal" font-family="DejaVu Sans, Verdana, Arial, sans-serif" >Generated by generate-layout.py · mapping files: Donner-StarryCTRL-DJ.midi.xml + Donner-StarryCTRL-DJ-scripts.js</text>
 </svg>
